@@ -98,8 +98,6 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
 import { getFirestore, collection, doc, getDoc, getDocs, setDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
-/* 1) GANTI dengan konfigurasi Firebase milik Anda dari Firebase Console > Project settings > Your apps.
-   Jangan menaruh service-account key atau private key di file frontend. */
 const firebaseConfig = {
   apiKey: "AIzaSyC0LM3tc_x3dJuyNJlOS0V2BNFiLjgyVaY",
   authDomain: "project-bu-ria-f1ec2.firebaseapp.com",
@@ -140,9 +138,67 @@ function studentId(name,kelas){return (kelas+"_"+name.normalize("NFD").replace(/
 function localKey(id){return "jelajah-teks-"+id;}
 function getLocalStudents(){try{return JSON.parse(localStorage.getItem("jelajah-teks-students")||"[]")}catch{return []}}
 function saveLocalStudents(rows){localStorage.setItem("jelajah-teks-students",JSON.stringify(rows))}
-async function getStudentRecord(id){if(db){const snap=await getDoc(doc(db,"murid",id));return snap.exists()?snap.data():null;}return getLocalStudents().find(x=>x.id===id)||null;}
-async function saveStudentRecord(student){if(db){await setDoc(doc(db,"murid",student.id),{...student,updatedAt:serverTimestamp()},{merge:true});}else{const rows=getLocalStudents();const i=rows.findIndex(x=>x.id===student.id);if(i>=0)rows[i]={...rows[i],...student};else rows.push(student);saveLocalStudents(rows);}}
-async function loadStudents(){if(db){const snap=await getDocs(collection(db,"murid"));state.students=snap.docs.map(d=>({id:d.id,...d.data()}));}else{state.students=getLocalStudents();}}
+
+async function getStudentRecord(id){
+  if(db){
+    const snap=await getDoc(doc(db,"murid",id));
+    if(snap.exists()){
+      const d = snap.data();
+      return {
+        id: snap.id,
+        nama: d.nama || d.Nama || "",
+        kelas: d.kelas || d.Kelas || "",
+        nilaiPreTest: d.nilaiPreTest !== undefined ? d.nilaiPreTest : (d["Nilai Pre Test"] !== undefined ? Number(d["Nilai Pre Test"]) : null),
+        nilaiPostTest: d.nilaiPostTest !== undefined ? d.nilaiPostTest : (d["Nilai Post Test"] !== undefined ? Number(d["Nilai Post Test"]) : null),
+        jawabanPreTest: d.jawabanPreTest || null,
+        jawabanPostTest: d.jawabanPostTest || null
+      };
+    }
+    return null;
+  }
+  return getLocalStudents().find(x=>x.id===id)||null;
+}
+
+async function saveStudentRecord(student){
+  if(db){
+    await setDoc(doc(db,"murid",student.id),{
+      nama: student.nama,
+      kelas: student.kelas,
+      nilaiPreTest: student.nilaiPreTest,
+      nilaiPostTest: student.nilaiPostTest,
+      jawabanPreTest: student.jawabanPreTest,
+      jawabanPostTest: student.jawabanPostTest,
+      updatedAt:serverTimestamp()
+    },{merge:true});
+  }else{
+    const rows=getLocalStudents();
+    const i=rows.findIndex(x=>x.id===student.id);
+    if(i>=0)rows[i]={...rows[i],...student};
+    else rows.push(student);
+    saveLocalStudents(rows);
+  }
+}
+
+async function loadStudents(){
+  if(db){
+    const snap=await getDocs(collection(db,"murid"));
+    state.students=snap.docs.map(d=>{
+      const data = d.data();
+      return {
+        id: d.id,
+        nama: data.nama || data.Nama || "",
+        kelas: data.kelas || data.Kelas || "",
+        nilaiPreTest: data.nilaiPreTest !== undefined ? data.nilaiPreTest : (data["Nilai Pre Test"] !== undefined && data["Nilai Pre Test"] !== "" ? Number(data["Nilai Pre Test"]) : null),
+        nilaiPostTest: data.nilaiPostTest !== undefined ? data.nilaiPostTest : (data["Nilai Post Test"] !== undefined && data["Nilai Post Test"] !== "" ? Number(data["Nilai Post Test"]) : null),
+        jawabanPreTest: data.jawabanPreTest || null,
+        jawabanPostTest: data.jawabanPostTest || null
+      };
+    });
+  }else{
+    state.students=getLocalStudents();
+  }
+}
+
 function showPage(page){state.page=page;document.querySelectorAll(".nav button").forEach(b=>b.classList.toggle("active",b.dataset.page===page));["leaderboard","materi","pretest","posttest"].forEach(p=>$("page-"+p).classList.toggle("hidden",p!==page));const titles={leaderboard:"Papan Peringkat 🏆",materi:"Jelajahi Materi 📚",pretest:"Pre-test 🎯",posttest:"Post-test 🚀"};$("pageTitle").textContent=titles[page];if(page==="leaderboard")renderLeaderboard();if(page==="pretest")renderQuiz("pretest");if(page==="posttest")renderQuiz("posttest");window.scrollTo({top:0,behavior:"smooth"});}
 document.querySelectorAll(".nav button").forEach(b=>b.addEventListener("click",()=>showPage(b.dataset.page)));
 $("studentName").addEventListener("input",e=>{const start=e.target.selectionStart;const next=titleCaseName(e.target.value);if(next!==e.target.value){e.target.value=next;try{e.target.setSelectionRange(start,start)}catch{}}});
@@ -158,7 +214,6 @@ $("loginForm").addEventListener("submit",async e=>{
   $("loginPage").classList.add("hidden");$("appPage").classList.remove("hidden");
   $("currentName").textContent=nama;$("currentClass").textContent="Kelas "+kelas;$("statName").textContent=nama;$("statClass").textContent="Kelas "+kelas;
   await loadStudents();renderLeaderboard();
-  // Murid baru diarahkan ke pre-test. Murid yang sudah tercatat hasil pre-test-nya langsung ke menu default.
   showPage(record.nilaiPreTest===null||record.nilaiPreTest===undefined?"pretest":"leaderboard");
  }catch(err){console.error(err);toast("Data gagal dimuat. Periksa konfigurasi Firebase dan aturan Firestore.");}
  finally{$("enterBtn").disabled=false;$("enterBtn").textContent="MASUK & MULAI BELAJAR ✨";}
@@ -180,10 +235,9 @@ function renderQuestion(root,type){const i=state.questionIndex,q=questions[i];ro
  $("prevQuestion").addEventListener("click",()=>{if(state.questionIndex>0){state.questionIndex--;renderQuestion(root,type);}});
  $("nextQuestion").addEventListener("click",async()=>{if(state.answers[i]===null){toast("Pilih satu jawaban sebelum melanjutkan.");return;}if(i<questions.length-1){state.questionIndex++;renderQuestion(root,type);}else await submitQuiz(type,root);});
 }
-async function submitQuiz(type,root){if(state.submitting)return;state.submitting=true;const btn=$("nextQuestion");if(btn){btn.disabled=true;btn.textContent="Menyimpan…";}const correct=state.answers.reduce((sum,a,i)=>sum+(a===questions[i].c?1:0),0);const score=correct*10;const key=type==="pretest"?"nilaiPreTest":"nilaiPostTest";const answersKey=type==="pretest"?"jawabanPreTest":"jawabanPostTest";const updated={...state.student,[key]:score,[answersKey]:state.answers,[(type==="pretest"?"waktuPreTest":"waktuPostTest")]:new Date().toISOString()};try{await saveStudentRecord(updated);state.student=updated;await loadStudents();state.student=state.students.find(s=>s.id===updated.id)||updated;renderLeaderboard();renderQuiz(type);toast("Jawaban berhasil disimpan. Nilaimu "+score+"/100!");}catch(err){console.error(err);toast("Gagal menyimpan hasil. Periksa koneksi dan aturan Firebase.");if(btn){btn.disabled=false;btn.textContent="Coba simpan lagi";}}finally{state.submitting=false;}}
+async function submitQuiz(type,root){if(state.submitting)return;state.submitting=true;const btn=$("nextQuestion");if(btn){btn.disabled=true;btn.textContent="Menyimpan…";}const correct=state.answers.reduce((sum,a,i)=>sum+(a===questions[i].c?1:0),0);const score=correct*10;const key=type==="pretest"?"nilaiPreTest":"nilaiPostTest";const updated={...state.student,[key]:score,[(type==="pretest"?"jawabanPreTest":"jawabanPostTest")]:state.answers};try{await saveStudentRecord(updated);state.student=updated;await loadStudents();state.student=state.students.find(s=>s.id===updated.id)||updated;renderLeaderboard();renderQuiz(type);toast("Jawaban berhasil disimpan. Nilaimu "+score+"/100!");}catch(err){console.error(err);toast("Gagal menyimpan hasil. Periksa koneksi dan aturan Firebase.");if(btn){btn.disabled=false;btn.textContent="Coba simpan lagi";}}finally{state.submitting=false;}}
 function csvCell(v){const s=String(v??"");return '"'+s.replace(/"/g,'""')+'"';}
 $("downloadBtn").addEventListener("click",()=>{const rows=[["Nama","Kelas","Nilai Pre-test","Nilai Post-test"],...state.students.map(s=>[s.nama,s.kelas,s.nilaiPreTest??"",s.nilaiPostTest??""])];const csv="\uFEFF"+rows.map(r=>r.map(csvCell).join(",")).join("\r\n");const blob=new Blob([csv],{type:"text/csv;charset=utf-8;"});const url=URL.createObjectURL(blob);const a=document.createElement("a");a.href=url;a.download="data-hasil-belajar-teks-deskripsi.csv";document.body.appendChild(a);a.click();a.remove();URL.revokeObjectURL(url);toast("File data berhasil disiapkan.");});
-/* Resume sesi di perangkat yang sama. Untuk akses aman lintas perangkat, tambahkan Firebase Authentication. */
 (async()=>{try{const saved=JSON.parse(localStorage.getItem("jelajah-teks-active")||"null");if(saved){const record=await getStudentRecord(saved.id);if(record){state.student=record;$("loginPage").classList.add("hidden");$("appPage").classList.remove("hidden");$("currentName").textContent=record.nama;$("currentClass").textContent="Kelas "+record.kelas;await loadStudents();renderLeaderboard();showPage(record.nilaiPreTest===null||record.nilaiPreTest===undefined?"pretest":"leaderboard");}}}catch(e){console.warn("Resume session:",e);}})();
 </script>
 </body>
