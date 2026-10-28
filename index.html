@@ -61,7 +61,7 @@
         <div class="grid leader-grid">
           <article class="card"><div class="card-title"><div><h3>🔎 Filter & Skor Saya</h3><p>Pilih kelas untuk menyaring papan peringkat.</p></div><span class="pill">PERSONAL</span></div>
             <div class="filter-grid"><div class="field"><label for="filterName">Nama murid</label><input id="filterName" placeholder="Cari nama..."></div><div class="field"><label for="filterClass">Kelas</label><select id="filterClass"><option value="ALL">Semua kelas</option><option>VII-A</option><option>VII-B</option><option>VII-C</option><option>VII-D</option><option>VII-E</option><option>VII-F</option><option>VII-G</option><option>VII-H</option></select></div></div>
-            <div class="filter-results"><div class="mini-score"><span>Nilai pre-test</span><strong id="filteredPre">—</strong></div><div class="mini-score"><span>Nilai post-test</span><strong id="filteredPost">—</strong></div></div><p class="tiny muted" id="filterStatus" style="margin-bottom:0">Data diperbarui dari Firebase.</p>
+            <div class="filter-results"><div class="mini-score"><span>Nilai pre-test</span><strong id="filteredPre">—</strong></div><div class="mini-score"><span>Nilai post-test</span><strong id="filteredPost">—</strong></div></div><p class="tiny muted" id="filterStatus" style="margin-bottom:0">Memeriksa koneksi data…</p>
           </article>
           <article class="card"><div class="card-title"><div><h3>✨ Misi Belajarmu</h3><p>Langkah berikut untuk naik level.</p></div><span class="pill">NEXT STEP</span></div><div style="display:grid;gap:12px"><div style="padding:14px;background:#f6f5ff;border-radius:14px"><strong>1. 📚 Pelajari materi</strong><p class="tiny muted" style="margin:5px 0 0">Kenali definisi, jenis, struktur, dan pancaindra dalam teks deskripsi.</p></div><div style="padding:14px;background:#eafff9;border-radius:14px"><strong>2. 🚀 Tantang dirimu</strong><p class="tiny muted" style="margin:5px 0 0">Kerjakan post-test dan bandingkan hasilnya dengan pre-test.</p></div></div></article>
           <article class="card"><div class="card-title"><div><h3>🥇 Peringkat Pre-test</h3><p>Urutan nilai tertinggi</p></div><span class="pill">PRE-TEST</span></div><div class="table-wrap"><table><thead><tr><th>#</th><th>Nama</th><th>Kelas</th><th>Nilai</th></tr></thead><tbody id="preLeaderboard"><tr><td colspan="4" class="empty">Memuat data…</td></tr></tbody></table></div></article>
@@ -72,10 +72,10 @@
         <div class="section-heading"><div><h2>📚 Laboratorium Teks Deskripsi</h2><p>Amati, pahami, dan temukan detail yang membuat teks terasa nyata.</p></div></div>
         <article class="content-card"><h2>1. Definisi Teks Deskripsi</h2><p><strong>A.</strong> Teks deskripsi adalah jenis teks atau wacana yang bertujuan untuk menggambarkan, melukiskan, atau memaparkan suatu objek, tempat, suasana, atau peristiwa secara terperinci kepada pembaca.</p><p><strong>B.</strong> Tujuan utama dari wacana deskriptif adalah objektifikasi persepsi, yaitu memindahkan pengalaman spasial, visual, auditif, mau pun taktil dari penulis ke dalam imajinasi pembaca secara presisi, sehingga pembaca seolah-olah mengalami interaksi langsung dengan objek tersebut.</p></article>
         <article class="content-card"><h2>2. Jenis-Jenis Teks Deskripsi</h2><h3>A. Berdasarkan Objek Penggambaran</h3>
-          <div class="lesson-row"><div><h3>🏠 Deskripsi Spasial (Ruang dan Tempat)</h3><blockquote>“Di sudut kiri ruang tamu berdiri sebuah sofa panjang berwarna abu-abu, tepat menghadap ke arah meja televisi berukuran sedang yang menempel di dinding utara.”</blockquote><p>Deskripsi ini menonjolkan posisi, arah, ukuran, dan susunan ruang.</p></div><div><iframe class="video-frame" loading="lazy" src="https://www.youtube.com/embed/RUgCoxZx3gY" title="Video deskripsi ruang dan tempat" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div></div>
-          <div class="lesson-row"><div><h3>🧑 Deskripsi Orang (Karakter/Fisik)</h3><blockquote>“Pak Harun memiliki postur tubuh yang tinggi tegap dengan rambut putih yang mulai menipis di bagian pelipis, serta sorot mata tajam yang selalu menyiratkan ketegasan saat ia mengajar.”</blockquote><p>Perhatikan rincian ciri fisik dan kesan karakter tokoh.</p></div><div><iframe class="video-frame" loading="lazy" src="www.youtube.com/embed/cAqkMJyiJmE" title="Video deskripsi orang" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div></div>
-          <div class="lesson-row"><div><h3>🌅 Deskripsi Waktu</h3><blockquote>“Suasana pelabuhan pada pukul lima pagi tampak remang-remang diselimuti kabut tipis, sementara lampu-lampu kapal masih menyala terang di tengah permukaan air laut yang tenang.”</blockquote><p>Waktu dapat ditunjukkan melalui cahaya, suasana, dan aktivitas.</p></div><div><iframe class="video-frame" loading="lazy" src="https://www.youtube.com/embed/0nYmRBpbfVU" title="Video deskripsi waktu" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div></div>
-          <div class="lesson-row"><div><h3>🐈 Deskripsi Objek/Benda</h3><blockquote>“Kucing berbulu lebat itu memiliki warna oranye keemasan dengan mata bulat berwarna hijau terang dan ekor panjang yang selalu bergerak-gerak lincah.”</blockquote><p>Rincian warna, bentuk, tekstur, ukuran, dan gerak membuat objek lebih jelas.</p></div><div><iframe class="video-frame" loading="lazy" src="https://www.youtube.com/embed/PRFU5C7b1pg" title="Video deskripsi objek" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div></div>
+          <div class="lesson-row"><div><h3>🏠 Deskripsi Spasial (Ruang dan Tempat)</h3><blockquote>“Di sudut kiri ruang tamu berdiri sebuah sofa panjang berwarna abu-abu, tepat menghadap ke arah meja televisi berukuran sedang yang menempel di dinding utara.”</blockquote><p>Deskripsi ini menonjolkan posisi, arah, ukuran, dan susunan ruang.</p></div><div><iframe class="video-frame" loading="lazy" src="https://www.youtube-nocookie.com/embed/VIDEO_ID_SPASIAL" title="Video deskripsi ruang dan tempat" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div></div>
+          <div class="lesson-row"><div><h3>🧑 Deskripsi Orang (Karakter/Fisik)</h3><blockquote>“Pak Harun memiliki postur tubuh yang tinggi tegap dengan rambut putih yang mulai menipis di bagian pelipis, serta sorot mata tajam yang selalu menyiratkan ketegasan saat ia mengajar.”</blockquote><p>Perhatikan rincian ciri fisik dan kesan karakter tokoh.</p></div><div><iframe class="video-frame" loading="lazy" src="https://www.youtube-nocookie.com/embed/VIDEO_ID_ORANG" title="Video deskripsi orang" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div></div>
+          <div class="lesson-row"><div><h3>🌅 Deskripsi Waktu</h3><blockquote>“Suasana pelabuhan pada pukul lima pagi tampak remang-remang diselimuti kabut tipis, sementara lampu-lampu kapal masih menyala terang di tengah permukaan air laut yang tenang.”</blockquote><p>Waktu dapat ditunjukkan melalui cahaya, suasana, dan aktivitas.</p></div><div><iframe class="video-frame" loading="lazy" src="https://www.youtube-nocookie.com/embed/VIDEO_ID_WAKTU" title="Video deskripsi waktu" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div></div>
+          <div class="lesson-row"><div><h3>🐈 Deskripsi Objek/Benda</h3><blockquote>“Kucing berbulu lebat itu memiliki warna oranye keemasan dengan mata bulat berwarna hijau terang dan ekor panjang yang selalu bergerak-gerak lincah.”</blockquote><p>Rincian warna, bentuk, tekstur, ukuran, dan gerak membuat objek lebih jelas.</p></div><div><iframe class="video-frame" loading="lazy" src="https://www.youtube-nocookie.com/embed/VIDEO_ID_OBJEK" title="Video deskripsi objek" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div></div>
           <h3>B. Berdasarkan Tingkat Subjektivitas Penulis</h3>
           <div class="lesson-row"><div><h3>📏 Deskripsi Objektif (Eksplanatori)</h3><blockquote>“Gedung perpustakaan tersebut memiliki panjang 40 meter, lebar 20 meter, serta dibangun menggunakan fondasi beton bertulang dengan dinding eksterior berlapis kaca temper.”</blockquote><p>Fokus pada fakta terukur dan informasi yang dapat diperiksa.</p></div><div><iframe class="video-frame" loading="lazy" src="https://www.youtube-nocookie.com/embed/VIDEO_ID_OBJEKTIF" title="Video deskripsi objektif" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div></div>
           <div class="lesson-row"><div><h3>🌄 Deskripsi Subjektif (Afektif)</h3><blockquote>“Puncak gunung itu berdiri dengan angkuh dan megah, memancarkan pesona magis yang sanggup membuat siapa pun merasa kecil di hadapan keindahan alam semesta.”</blockquote><p>Memuat kesan, perasaan, atau penilaian penulis terhadap objek.</p></div><div><iframe class="video-frame" loading="lazy" src="https://www.youtube-nocookie.com/embed/VIDEO_ID_SUBJEKTIF" title="Video deskripsi subjektif" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div></div>
@@ -96,8 +96,10 @@
 
 <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
-import { getFirestore, collection, doc, getDoc, getDocs, setDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+import { getFirestore, collection, doc, getDoc, getDocs, setDoc, serverTimestamp, onSnapshot } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
+/* 1) GANTI dengan konfigurasi Firebase milik Anda dari Firebase Console > Project settings > Your apps.
+   Jangan menaruh service-account key atau private key di file frontend. */
 const firebaseConfig = {
   apiKey: "AIzaSyC0LM3tc_x3dJuyNJlOS0V2BNFiLjgyVaY",
   authDomain: "project-bu-ria-f1ec2.firebaseapp.com",
@@ -106,15 +108,17 @@ const firebaseConfig = {
   messagingSenderId: "493584914070",
   appId: "1:493584914070:web:19f706eee31fb8f38594b7"
 };
-const firebaseReady = firebaseConfig.apiKey !== "AIzaSyC0LM3tc_x3dJuyNJlOS0V2BNFiLjgyVaY" && firebaseConfig.projectId !== "project-bu-ria-f1ec2";
+const firebaseReady = Boolean(firebaseConfig.apiKey && firebaseConfig.projectId);
 let db = null;
+let stopStudentsListener = null;
 if (firebaseReady) {
   const app = initializeApp(firebaseConfig);
   db = getFirestore(app);
-  document.getElementById("firebaseHint").textContent = "Database Firebase siap dihubungkan.";
+  document.getElementById("firebaseHint").textContent = "Firebase aktif · project-bu-ria-f1ec2 · sinkronisasi antarperangkat.";
   document.getElementById("firebaseHint").style.color = "#168c7c";
 } else {
-  document.getElementById("firebaseHint").textContent = "Mode demo: isi konfigurasi Firebase agar data tersimpan online.";
+  document.getElementById("firebaseHint").textContent = "PERHATIAN: mode demo lokal aktif. Data dari HP/laptop lain tidak akan muncul sampai konfigurasi Firebase diisi.";
+  document.getElementById("firebaseHint").style.color = "#b45309";
 }
 const $ = (id) => document.getElementById(id);
 const state = { student:null, students:[], page:"leaderboard", quizType:null, questionIndex:0, answers:[], submitting:false };
@@ -138,67 +142,70 @@ function studentId(name,kelas){return (kelas+"_"+name.normalize("NFD").replace(/
 function localKey(id){return "jelajah-teks-"+id;}
 function getLocalStudents(){try{return JSON.parse(localStorage.getItem("jelajah-teks-students")||"[]")}catch{return []}}
 function saveLocalStudents(rows){localStorage.setItem("jelajah-teks-students",JSON.stringify(rows))}
-
+function normalizeStudent(id,data={}){
+  // Mendukung format field lama dari Firebase Console (Nama/Kelas/Nilai Pre Test)
+  // sekaligus format camelCase yang digunakan aplikasi.
+  const nama=data.nama ?? data.Nama ?? data.namaMurid ?? "";
+  const kelas=String(data.kelas ?? data.Kelas ?? "").replace(/^kelas\s*/i,"").trim();
+  const pre=data.nilaiPreTest ?? data["Nilai Pre Test"] ?? data["Nilai Pre-test"] ?? data["Nilai Pre Test"];
+  const post=data.nilaiPostTest ?? data["Nilai Post Test"] ?? data["Nilai Post-test"];
+  return {...data,id,nama,kelas,nilaiPreTest:pre===""||pre==null?null:Number(pre),nilaiPostTest:post===""||post==null?null:Number(post),jawabanPreTest:data.jawabanPreTest??null,jawabanPostTest:data.jawabanPostTest??null};
+}
 async function getStudentRecord(id){
   if(db){
-    const snap=await getDoc(doc(db,"murid",id));
-    if(snap.exists()){
-      const d = snap.data();
-      return {
-        id: snap.id,
-        nama: d.nama || d.Nama || "",
-        kelas: d.kelas || d.Kelas || "",
-        nilaiPreTest: d.nilaiPreTest !== undefined ? d.nilaiPreTest : (d["Nilai Pre Test"] !== undefined ? Number(d["Nilai Pre Test"]) : null),
-        nilaiPostTest: d.nilaiPostTest !== undefined ? d.nilaiPostTest : (d["Nilai Post Test"] !== undefined ? Number(d["Nilai Post Test"]) : null),
-        jawabanPreTest: d.jawabanPreTest || null,
-        jawabanPostTest: d.jawabanPostTest || null
-      };
-    }
-    return null;
+    const direct=await getDoc(doc(db,"murid",id));
+    if(direct.exists()) return normalizeStudent(direct.id,direct.data());
+    // Dokumen lama mungkin memakai auto-ID dari tombol Add document di Console.
+    const all=await getDocs(collection(db,"murid"));
+    const target=all.docs.map(d=>normalizeStudent(d.id,d.data())).find(s=>studentId(s.nama,s.kelas)===id && s.nama && s.kelas);
+    return target||null;
   }
   return getLocalStudents().find(x=>x.id===id)||null;
 }
-
 async function saveStudentRecord(student){
   if(db){
-    await setDoc(doc(db,"murid",student.id),{
-      nama: student.nama,
-      kelas: student.kelas,
-      nilaiPreTest: student.nilaiPreTest,
-      nilaiPostTest: student.nilaiPostTest,
-      jawabanPreTest: student.jawabanPreTest,
-      jawabanPostTest: student.jawabanPostTest,
-      updatedAt:serverTimestamp()
-    },{merge:true});
-  }else{
-    const rows=getLocalStudents();
-    const i=rows.findIndex(x=>x.id===student.id);
-    if(i>=0)rows[i]={...rows[i],...student};
-    else rows.push(student);
-    saveLocalStudents(rows);
+    await setDoc(doc(db,"murid",student.id),{...student,updatedAt:serverTimestamp()},{merge:true});
+    return;
   }
+  // Fallback ini hanya untuk demo; localStorage tidak pernah menyinkronkan perangkat.
+  const rows=getLocalStudents();
+  const i=rows.findIndex(x=>x.id===student.id);
+  if(i>=0) rows[i]={...rows[i],...student}; else rows.push(student);
+  saveLocalStudents(rows);
 }
-
 async function loadStudents(){
   if(db){
+    // Selalu baca seluruh koleksi "murid" dari Firestore, bukan localStorage.
     const snap=await getDocs(collection(db,"murid"));
-    state.students=snap.docs.map(d=>{
-      const data = d.data();
-      return {
-        id: d.id,
-        nama: data.nama || data.Nama || "",
-        kelas: data.kelas || data.Kelas || "",
-        nilaiPreTest: data.nilaiPreTest !== undefined ? data.nilaiPreTest : (data["Nilai Pre Test"] !== undefined && data["Nilai Pre Test"] !== "" ? Number(data["Nilai Pre Test"]) : null),
-        nilaiPostTest: data.nilaiPostTest !== undefined ? data.nilaiPostTest : (data["Nilai Post Test"] !== undefined && data["Nilai Post Test"] !== "" ? Number(data["Nilai Post Test"]) : null),
-        jawabanPreTest: data.jawabanPreTest || null,
-        jawabanPostTest: data.jawabanPostTest || null
-      };
-    });
-  }else{
+    state.students=snap.docs.map(d=>normalizeStudent(d.id,d.data()));
+    updateSyncStatus("Terhubung ke Firebase · "+state.students.length+" dokumen murid","ok");
+  } else {
     state.students=getLocalStudents();
+    updateSyncStatus("MODE DEMO LOKAL · "+state.students.length+" data hanya ada di browser ini","warn");
   }
 }
-
+function updateSyncStatus(message,kind="warn"){
+  const el=$("filterStatus");
+  if(el){el.textContent=message;el.style.color=kind==="ok"?"#168c7c":"#a16207";}
+}
+function startLiveStudentSync(){
+  if(!db || stopStudentsListener) return;
+  stopStudentsListener=onSnapshot(collection(db,"murid"),(snapshot)=>{
+    state.students=snapshot.docs.map(d=>normalizeStudent(d.id,d.data()));
+    updateSyncStatus("Sinkronisasi aktif · "+state.students.length+" murid terbaca dari Firebase","ok");
+    if(state.student){
+      const latest=state.students.find(s=>s.id===state.student.id);
+      if(latest) state.student=latest;
+      renderLeaderboard();
+      if(state.page==="pretest") renderQuiz("pretest");
+      if(state.page==="posttest") renderQuiz("posttest");
+    }
+  },(error)=>{
+    console.error("Firestore live sync error:",error);
+    updateSyncStatus("Gagal membaca Firestore: "+(error.code||error.message)+" · periksa Rules dan nama koleksi","warn");
+    toast("Firebase tidak dapat membaca data. Periksa Firestore Rules.");
+  });
+}
 function showPage(page){state.page=page;document.querySelectorAll(".nav button").forEach(b=>b.classList.toggle("active",b.dataset.page===page));["leaderboard","materi","pretest","posttest"].forEach(p=>$("page-"+p).classList.toggle("hidden",p!==page));const titles={leaderboard:"Papan Peringkat 🏆",materi:"Jelajahi Materi 📚",pretest:"Pre-test 🎯",posttest:"Post-test 🚀"};$("pageTitle").textContent=titles[page];if(page==="leaderboard")renderLeaderboard();if(page==="pretest")renderQuiz("pretest");if(page==="posttest")renderQuiz("posttest");window.scrollTo({top:0,behavior:"smooth"});}
 document.querySelectorAll(".nav button").forEach(b=>b.addEventListener("click",()=>showPage(b.dataset.page)));
 $("studentName").addEventListener("input",e=>{const start=e.target.selectionStart;const next=titleCaseName(e.target.value);if(next!==e.target.value){e.target.value=next;try{e.target.setSelectionRange(start,start)}catch{}}});
@@ -209,23 +216,40 @@ $("loginForm").addEventListener("submit",async e=>{
  try{
   const id=studentId(nama,kelas);let record=await getStudentRecord(id);
   if(!record){record={id,nama,kelas,nilaiPreTest:null,nilaiPostTest:null,jawabanPreTest:null,jawabanPostTest:null,createdAt:new Date().toISOString()};await saveStudentRecord(record);toast("Selamat datang, "+nama+"! Identitasmu sudah tersimpan.");}
-  else{record={...record,nama,kelas};await saveStudentRecord(record);toast("Selamat datang kembali, "+nama+"!");}
+  else{record={...record,id:record.id||id,nama,kelas};await saveStudentRecord(record);toast("Selamat datang kembali, "+nama+"!");}
   state.student=record;localStorage.setItem("jelajah-teks-active",JSON.stringify({id,nama,kelas}));
   $("loginPage").classList.add("hidden");$("appPage").classList.remove("hidden");
   $("currentName").textContent=nama;$("currentClass").textContent="Kelas "+kelas;$("statName").textContent=nama;$("statClass").textContent="Kelas "+kelas;
-  await loadStudents();renderLeaderboard();
+  await loadStudents();startLiveStudentSync();renderLeaderboard();
+  // Murid baru diarahkan ke pre-test. Murid yang sudah tercatat hasil pre-test-nya langsung ke menu default.
   showPage(record.nilaiPreTest===null||record.nilaiPreTest===undefined?"pretest":"leaderboard");
- }catch(err){console.error(err);toast("Data gagal dimuat. Periksa konfigurasi Firebase dan aturan Firestore.");}
+ }catch(err){
+   console.error("Login / baca Firestore gagal:",err);
+   toast("Gagal mengakses database ("+(err.code||err.message)+"). Periksa konfigurasi Firebase, koleksi murid, dan Firestore Rules.");
+ }
  finally{$("enterBtn").disabled=false;$("enterBtn").textContent="MASUK & MULAI BELAJAR ✨";}
 });
 function scoreOf(s,type){const v=type==="pretest"?s.nilaiPreTest:s.nilaiPostTest;return typeof v==="number"?v:null;}
 function rankClass(i){return i===0?"gold":i===1?"silver":i===2?"bronze":"";}
 function leaderboardRows(type){const cls=$("filterClass").value;return state.students.filter(s=>cls==="ALL"||s.kelas===cls).filter(s=>scoreOf(s,type)!==null).sort((a,b)=>scoreOf(b,type)-scoreOf(a,type)||String(a.nama).localeCompare(String(b.nama),"id"));}
 function renderTable(type){const body=$(type==="pretest"?"preLeaderboard":"postLeaderboard");const rows=leaderboardRows(type);if(!rows.length){body.innerHTML='<tr><td colspan="4" class="empty">Belum ada nilai '+(type==="pretest"?"pre-test":"post-test")+'.</td></tr>';return;}body.innerHTML=rows.map((s,i)=>`<tr><td><span class="rank ${rankClass(i)}">${i+1}</span></td><td>${safeText(s.nama)}${s.id===state.student?.id?' <span title="Ini kamu">⭐</span>':''}</td><td>${safeText(s.kelas)}</td><td><span class="score-pill">${scoreOf(s,type)}</span></td></tr>`).join("");}
-function renderLeaderboard(){if(!state.student)return;const s=state.students.find(x=>x.id===state.student.id)||state.student;$("statPre").textContent=scoreOf(s,"pretest")??"—";$("statPost").textContent=scoreOf(s,"posttest")??"—";$("filteredPre").textContent=scoreOf(s,"pretest")??"—";$("filteredPost").textContent=scoreOf(s,"posttest")??"—";const pre=scoreOf(s,"pretest"),post=scoreOf(s,"posttest");$("statGrowth").textContent=pre!==null&&post!==null?(post-pre>=0?"+":"")+(post-pre)+" poin dari pre-test":"Selesaikan post-test untuk melihat hasil";$("filterName").value=s.nama||"";$("filterClass").value="ALL";$("filterStatus").textContent=`Data tersedia: ${state.students.length} murid · filter kelas dapat diubah.`;renderTable("pretest");renderTable("posttest");}
+function renderLeaderboard(){if(!state.student)return;const s=state.students.find(x=>x.id===state.student.id)||state.student;$("statPre").textContent=scoreOf(s,"pretest")??"—";$("statPost").textContent=scoreOf(s,"posttest")??"—";$("filteredPre").textContent=scoreOf(s,"pretest")??"—";$("filteredPost").textContent=scoreOf(s,"posttest")??"—";const pre=scoreOf(s,"pretest"),post=scoreOf(s,"posttest");$("statGrowth").textContent=pre!==null&&post!==null?(post-pre>=0?"+":"")+(post-pre)+" poin dari pre-test":"Selesaikan post-test untuk melihat hasil";$("filterName").value=s.nama||"";$("filterClass").value="ALL";$("filterStatus").textContent=db
+ ? `Firebase aktif: ${state.students.length} dokumen di koleksi murid · filter kelas dapat diubah.`
+ : `MODE DEMO LOKAL: ${state.students.length} data di browser ini saja. Isi firebaseConfig untuk sinkronisasi HP/laptop.`;renderTable("pretest");renderTable("posttest");}
 $("filterClass").addEventListener("change",()=>{renderTable("pretest");renderTable("posttest");});
 $("filterName").addEventListener("input",()=>{const query=$("filterName").value.trim().toLocaleLowerCase("id-ID");const s=state.students.find(x=>x.id===state.student?.id);$("filteredPre").textContent=s&&s.nama.toLocaleLowerCase("id-ID").includes(query)?scoreOf(s,"pretest")??"—":"—";$("filteredPost").textContent=s&&s.nama.toLocaleLowerCase("id-ID").includes(query)?scoreOf(s,"posttest")??"—":"—";});
-$("refreshBtn").addEventListener("click",async()=>{try{await loadStudents();renderLeaderboard();toast("Papan peringkat diperbarui.");}catch(e){toast("Belum dapat memperbarui data.");}});
+$("refreshBtn").addEventListener("click",async()=>{
+  try{
+    await loadStudents();
+    renderLeaderboard();
+    if(!db) toast("Mode demo lokal: konfigurasi Firebase belum aktif, data tidak lintas perangkat.");
+    else toast("Papan peringkat diperbarui dari Firestore ("+state.students.length+" murid).");
+  }catch(e){
+    console.error("Refresh Firestore gagal:",e);
+    updateSyncStatus("Gagal memuat data: "+(e.code||e.message),"warn");
+    toast("Gagal membaca Firestore. Periksa konfigurasi, nama koleksi, dan Rules.");
+  }
+});
 function renderQuiz(type){const root=$(type==="pretest"?"preQuiz":"postQuiz");const score=scoreOf(state.student||{},type);$(type==="pretest"?"preStatus":"postStatus").textContent=score===null?"Belum dikerjakan":"Nilai tersimpan: "+score;
  if(score!==null){root.innerHTML=`<article class="content-card result"><div class="result-emoji">${score>=80?"🏆":score>=60?"🌟":"💪"}</div><h2>${type==="pretest"?"Pre-test telah selesai!":"Post-test telah selesai!"}</h2><p class="muted">Nilai tersimpan untuk ${safeText(state.student.nama)}.</p><div class="big-score">${score}<span style="font-size:1.2rem">/100</span></div><p>${score>=80?"Hebat! Kamu menguasai banyak konsep.":score>=60?"Bagus! Terus kuatkan pemahamanmu.":"Tetap semangat! Pelajari materi, lalu coba lagi bersama gurumu."}</p><button class="primary-btn" id="quizAgain" style="max-width:300px;margin:10px auto">${type==="pretest"?"Lihat leaderboard":"Kembali ke leaderboard"} 🏆</button></article>`;$("quizAgain").addEventListener("click",()=>showPage("leaderboard"));return;}
  state.quizType=type;state.questionIndex=0;state.answers=Array(questions.length).fill(null);renderQuestion(root,type);
@@ -235,10 +259,11 @@ function renderQuestion(root,type){const i=state.questionIndex,q=questions[i];ro
  $("prevQuestion").addEventListener("click",()=>{if(state.questionIndex>0){state.questionIndex--;renderQuestion(root,type);}});
  $("nextQuestion").addEventListener("click",async()=>{if(state.answers[i]===null){toast("Pilih satu jawaban sebelum melanjutkan.");return;}if(i<questions.length-1){state.questionIndex++;renderQuestion(root,type);}else await submitQuiz(type,root);});
 }
-async function submitQuiz(type,root){if(state.submitting)return;state.submitting=true;const btn=$("nextQuestion");if(btn){btn.disabled=true;btn.textContent="Menyimpan…";}const correct=state.answers.reduce((sum,a,i)=>sum+(a===questions[i].c?1:0),0);const score=correct*10;const key=type==="pretest"?"nilaiPreTest":"nilaiPostTest";const updated={...state.student,[key]:score,[(type==="pretest"?"jawabanPreTest":"jawabanPostTest")]:state.answers};try{await saveStudentRecord(updated);state.student=updated;await loadStudents();state.student=state.students.find(s=>s.id===updated.id)||updated;renderLeaderboard();renderQuiz(type);toast("Jawaban berhasil disimpan. Nilaimu "+score+"/100!");}catch(err){console.error(err);toast("Gagal menyimpan hasil. Periksa koneksi dan aturan Firebase.");if(btn){btn.disabled=false;btn.textContent="Coba simpan lagi";}}finally{state.submitting=false;}}
+async function submitQuiz(type,root){if(state.submitting)return;state.submitting=true;const btn=$("nextQuestion");if(btn){btn.disabled=true;btn.textContent="Menyimpan…";}const correct=state.answers.reduce((sum,a,i)=>sum+(a===questions[i].c?1:0),0);const score=correct*10;const key=type==="pretest"?"nilaiPreTest":"nilaiPostTest";const answersKey=type==="pretest"?"jawabanPreTest":"jawabanPostTest";const updated={...state.student,[key]:score,[answersKey]:state.answers,[(type==="pretest"?"waktuPreTest":"waktuPostTest")]:new Date().toISOString()};try{await saveStudentRecord(updated);state.student=updated;await loadStudents();state.student=state.students.find(s=>s.id===updated.id)||updated;renderLeaderboard();renderQuiz(type);toast("Jawaban berhasil disimpan. Nilaimu "+score+"/100!");}catch(err){console.error(err);toast("Gagal menyimpan hasil. Periksa koneksi dan aturan Firebase.");if(btn){btn.disabled=false;btn.textContent="Coba simpan lagi";}}finally{state.submitting=false;}}
 function csvCell(v){const s=String(v??"");return '"'+s.replace(/"/g,'""')+'"';}
 $("downloadBtn").addEventListener("click",()=>{const rows=[["Nama","Kelas","Nilai Pre-test","Nilai Post-test"],...state.students.map(s=>[s.nama,s.kelas,s.nilaiPreTest??"",s.nilaiPostTest??""])];const csv="\uFEFF"+rows.map(r=>r.map(csvCell).join(",")).join("\r\n");const blob=new Blob([csv],{type:"text/csv;charset=utf-8;"});const url=URL.createObjectURL(blob);const a=document.createElement("a");a.href=url;a.download="data-hasil-belajar-teks-deskripsi.csv";document.body.appendChild(a);a.click();a.remove();URL.revokeObjectURL(url);toast("File data berhasil disiapkan.");});
-(async()=>{try{const saved=JSON.parse(localStorage.getItem("jelajah-teks-active")||"null");if(saved){const record=await getStudentRecord(saved.id);if(record){state.student=record;$("loginPage").classList.add("hidden");$("appPage").classList.remove("hidden");$("currentName").textContent=record.nama;$("currentClass").textContent="Kelas "+record.kelas;await loadStudents();renderLeaderboard();showPage(record.nilaiPreTest===null||record.nilaiPreTest===undefined?"pretest":"leaderboard");}}}catch(e){console.warn("Resume session:",e);}})();
+/* Resume sesi di perangkat yang sama. Untuk akses aman lintas perangkat, tambahkan Firebase Authentication. */
+(async()=>{try{const saved=JSON.parse(localStorage.getItem("jelajah-teks-active")||"null");if(saved){const record=await getStudentRecord(saved.id);if(record){state.student=record;$("loginPage").classList.add("hidden");$("appPage").classList.remove("hidden");$("currentName").textContent=record.nama;$("currentClass").textContent="Kelas "+record.kelas;await loadStudents();startLiveStudentSync();renderLeaderboard();showPage(record.nilaiPreTest===null||record.nilaiPreTest===undefined?"pretest":"leaderboard");}}}catch(e){console.warn("Resume session:",e);}})();
 </script>
 </body>
 </html>
