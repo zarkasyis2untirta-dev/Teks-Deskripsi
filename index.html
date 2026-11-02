@@ -204,7 +204,16 @@ if (firebaseReady) {
   document.getElementById("firebaseHint").style.color = "#b45309";
 }
 const $ = (id) => document.getElementById(id);
-const state = { student:null, students:[], page:"leaderboard", quizType:null, questionIndex:0, answers:[], submitting:false };
+const state = {
+  student:null,
+  students:[],
+  page:"leaderboard",
+  quizType:null,
+  questionIndex:0,
+  answers:[],
+  submitting:false,
+  quizInProgress:false
+};
 const questions = [
  {q:"Apa tujuan utama teks deskripsi?",a:["Menceritakan urutan kejadian berdasarkan waktu","Menggambarkan objek secara terperinci agar pembaca seolah-olah melihat atau merasakannya","Membujuk pembaca membeli sesuatu","Menjelaskan langkah membuat benda"],c:1},
  {q:"Manakah yang paling tepat menjadi objek teks deskripsi?",a:["Hanya tokoh dalam cerita","Hanya benda mati","Orang, tempat, benda, suasana, atau peristiwa","Hanya kejadian masa lalu"],c:2},
@@ -345,12 +354,19 @@ $("refreshBtn").addEventListener("click",async()=>{
   }
 });
 
+
 function renderQuiz(type){
  const root=$(type==="pretest"?"preQuiz":"postQuiz");
  const score=scoreOf(state.student||{},type);
 
  $(type==="pretest"?"preStatus":"postStatus").textContent=
    score===null?"Belum dikerjakan":"Nilai terakhir: "+score;
+
+ // Jika murid sedang mengerjakan tes, jangan tampilkan kembali halaman hasil.
+ if(state.quizInProgress && state.quizType===type){
+   renderQuestion(root,type);
+   return;
+ }
 
  if(score!==null && type==="pretest"){
    root.innerHTML=`<article class="content-card result">
@@ -386,8 +402,10 @@ function renderQuiz(type){
 
    $("quizAgain").addEventListener("click",()=>{
      state.quizType="posttest";
+     state.quizInProgress=true;
      state.questionIndex=0;
      state.answers=Array(questions.length).fill(null);
+
      renderQuestion(root,"posttest");
      window.scrollTo({top:0,behavior:"smooth"});
    });
@@ -397,10 +415,13 @@ function renderQuiz(type){
  }
 
  state.quizType=type;
+ state.quizInProgress=true;
  state.questionIndex=0;
  state.answers=Array(questions.length).fill(null);
+
  renderQuestion(root,type);
 }
+
 
 function renderQuestion(root,type){const i=state.questionIndex,q=questions[i];root.innerHTML=`<article class="content-card"><div style="display:flex;justify-content:space-between;gap:10px;align-items:center"><span class="question-number">PERTANYAAN ${i+1} DARI ${questions.length}</span><span class="tiny muted">⏱ Santai, baca dengan teliti</span></div><div class="quiz-progress"><span style="width:${(i+1)/questions.length*100}%"></span></div><div class="question-text">${safeText(q.q)}</div><div class="answers">${q.a.map((a,j)=>`<button class="answer ${state.answers[i]===j?"selected":""}" data-answer="${j}"><span class="letter">${letter[j]}</span><span>${safeText(a)}</span></button>`).join("")}</div><div class="quiz-actions"><button id="prevQuestion" class="secondary-btn" ${i===0?"disabled":""}>← Sebelumnya</button><button id="nextQuestion" class="primary-btn" style="width:auto;min-width:145px;padding:12px 18px;box-shadow:0 4px 0 #4d3dca">${i===questions.length-1?"Kirim jawaban ✓":"Berikutnya →"}</button></div><p class="tiny muted" style="margin-bottom:0">Jawabanmu tersimpan setelah kamu menyelesaikan seluruh soal.</p></article>`;
  root.querySelectorAll("[data-answer]").forEach(b=>b.addEventListener("click",()=>{state.answers[i]=Number(b.dataset.answer);renderQuestion(root,type);}));
