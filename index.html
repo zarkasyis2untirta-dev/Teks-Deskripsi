@@ -344,10 +344,64 @@ $("refreshBtn").addEventListener("click",async()=>{
     toast("Gagal membaca Firestore. Periksa konfigurasi, nama koleksi, dan Rules.");
   }
 });
-function renderQuiz(type){const root=$(type==="pretest"?"preQuiz":"postQuiz");const score=scoreOf(state.student||{},type);$(type==="pretest"?"preStatus":"postStatus").textContent=score===null?"Belum dikerjakan":"Nilai tersimpan: "+score;
- if(score!==null){root.innerHTML=`<article class="content-card result"><div class="result-emoji">${score>=80?"🏆":score>=60?"🌟":"💪"}</div><h2>${type==="pretest"?"Pre-test telah selesai!":"Post-test telah selesai!"}</h2><p class="muted">Nilai tersimpan untuk ${safeText(state.student.nama)}.</p><div class="big-score">${score}<span style="font-size:1.2rem">/100</span></div><p>${score>=80?"Hebat! Kamu menguasai banyak konsep.":score>=60?"Bagus! Terus kuatkan pemahamanmu.":"Tetap semangat! Pelajari materi, lalu coba lagi bersama gurumu."}</p><button class="primary-btn" id="quizAgain" style="max-width:300px;margin:10px auto">${type==="pretest"?"Lihat leaderboard":"Kembali ke leaderboard"} 🏆</button></article>`;$("quizAgain").addEventListener("click",()=>showPage("leaderboard"));return;}
- state.quizType=type;state.questionIndex=0;state.answers=Array(questions.length).fill(null);renderQuestion(root,type);
+
+function renderQuiz(type){
+ const root=$(type==="pretest"?"preQuiz":"postQuiz");
+ const score=scoreOf(state.student||{},type);
+
+ $(type==="pretest"?"preStatus":"postStatus").textContent=
+   score===null?"Belum dikerjakan":"Nilai terakhir: "+score;
+
+ if(score!==null && type==="pretest"){
+   root.innerHTML=`<article class="content-card result">
+     <div class="result-emoji">${score>=80?"🏆":score>=60?"🌟":"💪"}</div>
+     <h2>Pre-test telah selesai!</h2>
+     <p class="muted">Nilai tersimpan untuk ${safeText(state.student.nama)}.</p>
+     <div class="big-score">${score}<span style="font-size:1.2rem">/100</span></div>
+     <p>Pre-test sudah selesai. Silakan lanjutkan pembelajaran.</p>
+     <button class="primary-btn" id="quizAgain" style="max-width:300px;margin:10px auto">
+       Lihat leaderboard 🏆
+     </button>
+   </article>`;
+
+   $("quizAgain").addEventListener("click",()=>showPage("leaderboard"));
+   return;
+ }
+
+ if(score!==null && type==="posttest"){
+   root.innerHTML=`<article class="content-card result">
+     <div class="result-emoji">${score>=80?"🏆":score>=60?"🌟":"💪"}</div>
+     <h2>Post-test telah selesai!</h2>
+     <p class="muted">Nilai terakhir tersimpan untuk ${safeText(state.student.nama)}.</p>
+     <div class="big-score">${score}<span style="font-size:1.2rem">/100</span></div>
+     <p>${score>=80?"Hebat! Kamu menguasai banyak konsep.":score>=60?"Bagus! Terus kuatkan pemahamanmu.":"Tetap semangat! Pelajari materi, lalu coba lagi."}</p>
+     <p class="tiny muted">Kamu boleh mengulang post-test berkali-kali. Nilai yang ditampilkan akan mengikuti percobaan terakhir.</p>
+     <button class="primary-btn" id="quizAgain" style="max-width:300px;margin:10px auto">
+       🔄 ULANGI POST-TEST
+     </button>
+     <button class="secondary-btn" id="quizHome" style="display:block;margin:12px auto">
+       Kembali ke leaderboard 🏆
+     </button>
+   </article>`;
+
+   $("quizAgain").addEventListener("click",()=>{
+     state.quizType="posttest";
+     state.questionIndex=0;
+     state.answers=Array(questions.length).fill(null);
+     renderQuestion(root,"posttest");
+     window.scrollTo({top:0,behavior:"smooth"});
+   });
+
+   $("quizHome").addEventListener("click",()=>showPage("leaderboard"));
+   return;
+ }
+
+ state.quizType=type;
+ state.questionIndex=0;
+ state.answers=Array(questions.length).fill(null);
+ renderQuestion(root,type);
 }
+
 function renderQuestion(root,type){const i=state.questionIndex,q=questions[i];root.innerHTML=`<article class="content-card"><div style="display:flex;justify-content:space-between;gap:10px;align-items:center"><span class="question-number">PERTANYAAN ${i+1} DARI ${questions.length}</span><span class="tiny muted">⏱ Santai, baca dengan teliti</span></div><div class="quiz-progress"><span style="width:${(i+1)/questions.length*100}%"></span></div><div class="question-text">${safeText(q.q)}</div><div class="answers">${q.a.map((a,j)=>`<button class="answer ${state.answers[i]===j?"selected":""}" data-answer="${j}"><span class="letter">${letter[j]}</span><span>${safeText(a)}</span></button>`).join("")}</div><div class="quiz-actions"><button id="prevQuestion" class="secondary-btn" ${i===0?"disabled":""}>← Sebelumnya</button><button id="nextQuestion" class="primary-btn" style="width:auto;min-width:145px;padding:12px 18px;box-shadow:0 4px 0 #4d3dca">${i===questions.length-1?"Kirim jawaban ✓":"Berikutnya →"}</button></div><p class="tiny muted" style="margin-bottom:0">Jawabanmu tersimpan setelah kamu menyelesaikan seluruh soal.</p></article>`;
  root.querySelectorAll("[data-answer]").forEach(b=>b.addEventListener("click",()=>{state.answers[i]=Number(b.dataset.answer);renderQuestion(root,type);}));
  $("prevQuestion").addEventListener("click",()=>{if(state.questionIndex>0){state.questionIndex--;renderQuestion(root,type);}});
